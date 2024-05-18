@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title th:text="${title}">Document</title>
+</head>
+<body>
+  <h1 th:text="${title}"></h1>
+  <ul>
+    <li th:text="${user.name}"></li>
+    <li th:text="${user.lastname}"></li>
+    <li th:if="${user.email}" th:text="${user.email}"></li>
+    <li th:if="${user.email == null}" th:text="${'no tiene email'}"></li>
+  </ul>
+
+  <a th:href="@{/list}">ver mensaje</a><br/>  <!--diferentes formas de generar rutas con thymeleaf + sus parametros-->
+  <a th:href="@{'/api/params/foo?message=' + ${title}}">ver mensaje</a><br/>
+  <a th:href="@{/api/params/foo?message='Hola que tal'}">ver message2</a><br/>
+  <a th:href="@{/api/params/foo(message='Hola que tal')}">ver message3</a><br/>
+  <a th:href="@{/api/params/bar(text='hola que tal', code=2003)}">ver bar mix 2 parametro</a><br/>
+  <a th:href="@{/api/var/baz/hola que tal}">ver var path variable</a><br/>
+  <a th:href="@{'/api/var/baz/' + 'hola quetal'}">ver var path variable 2</a><br/>
+  <a th:href="@{'api/var/baz/' + ${title}}">ver var path variable 3</a>
+</body>
+</html>
